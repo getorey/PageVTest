@@ -1,0 +1,27 @@
+
+이제 oh-my-opencode가 “hello 스킬”을 찾을 수 있어서, 위의 **Skill not found** 경고가 사라질 가능성이 큽니다.
+
+---
+
+## 해결 2) “에이전트(@hello)”가 제대로 등록됐는지 체크 (필수 점검)
+`@hello` 자체를 안정적으로 쓰려면, 프로젝트에 에이전트 파일이 있어야 합니다.
+
+- 위치: **`.opencode/agents/hello.md`** :contentReference[oaicite:3]{index=3}
+- 그리고 **opencode 재시작**이 보통 필요합니다(시작 시 로드되는 경우가 많아요).
+
+### 예시: `.opencode/agents/hello.md`
+(이미 만들어두셨다면 비교만 해도 됩니다)
+
+```md
+---
+description: "hello_tool로 인사하는 서브에이전트"
+mode: subagent
+tools:
+  "*": false
+  hello_tool: true
+permission:
+  "*": "ask"
+---
+
+반드시 먼저 hello_tool을 호출해서 인사 문구를 만들고,
+그 결과를 간단히 출력하세요.
